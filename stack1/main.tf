@@ -6,17 +6,17 @@ provider "aws" {
 
 # New VPC data block (Updated VPC ID)
 data "aws_vpc" "existing" {
-  id = "vpc-0f408571103d468e9"
+  id = "vpc-0978515ad9a35dfa2"
 }
 
 # Updated subnet 1
 data "aws_subnet" "subnet1" {
-  id = "subnet-07fefa5bde6f7702e"
+  id = "subnet-08b85dd21f385db67"
 }
 
 # Updated subnet 2
 data "aws_subnet" "subnet2" {
-  id = "subnet-0910a68ef87c9b7b1"
+  id = "subnet-000143b957a59b315"
 }
 
 module "aurora_serverless" {
