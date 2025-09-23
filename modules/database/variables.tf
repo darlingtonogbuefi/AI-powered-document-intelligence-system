@@ -1,3 +1,5 @@
+# modules\database\variables.tf
+
 variable "cluster_identifier" {
   description = "The cluster identifier"
   type        = string

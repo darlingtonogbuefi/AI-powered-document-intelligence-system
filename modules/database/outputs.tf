@@ -1,3 +1,5 @@
+# modules\database\outputs.tf
+
 output "cluster_endpoint" {
   description = "The cluster endpoint"
   value       = aws_rds_cluster.aurora_serverless.endpoint
