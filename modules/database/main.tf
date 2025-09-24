@@ -27,7 +27,7 @@ resource "aws_rds_cluster" "aurora_serverless" {
 resource "aws_rds_cluster_instance" "aurora_instance" {
   cluster_identifier = aws_rds_cluster.aurora_serverless.id
   instance_class     = "db.serverless"
-  publicly_accessible = true
+  publicly_accessible = true   # add to enable public access
   engine             = aws_rds_cluster.aurora_serverless.engine
   engine_version     = aws_rds_cluster.aurora_serverless.engine_version
 }

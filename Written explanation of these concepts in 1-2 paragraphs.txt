@@ -1,0 +1,5 @@
+Temperature dictates the level of randomness. A low value (near 0.1) produces focused, deterministic, and repetitive answers, ideal for technical chatbots requiring precision. A high value (near 0.9) encourages diverse and creative responses, better suited for brainstorming or storytelling.
+
+Top-P, or nucleus sampling, controls the shortlist of words the AI considers. A low value (like 0.1) restricts choices to only the most probable next words, ensuring conservative and coherent answers. A high value (like 0.9) allows a wider pool of options, leading to more varied and natural-sounding language.
+
+For best results, it is better to tune them together. Use low Temperature and low Top-P for factual accuracy, and higher values for creative tasks.

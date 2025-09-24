@@ -1,4 +1,16 @@
 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.14"
+    }
+  }
+
+  required_version = ">= 1.10.0"
+}
+
+
 
 resource "aws_iam_role" "bedrock_kb_role" {
   name = "${var.knowledge_base_name}-role"
@@ -22,7 +34,29 @@ resource "aws_iam_role_policy_attachment" "bedrock_kb_policy" {
   role       = aws_iam_role.bedrock_kb_role.name
 }
 
-# New IAM policy for RDS Data API access
+# ✅ NEW: Add Titan Embed Model access for vector store sync
+resource "aws_iam_policy" "bedrock_embedding_model_access" {
+  name        = "bedrock_embedding_model_access"
+  description = "Allow Bedrock KB role to call Titan embedding model"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = "bedrock:InvokeModel",
+        Resource = "arn:aws:bedrock:us-west-2::foundation-model/amazon.titan-embed-text-v1"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "bedrock_embedding_model_access_attachment" {
+  role       = aws_iam_role.bedrock_kb_role.name
+  policy_arn = aws_iam_policy.bedrock_embedding_model_access.arn
+}
+
+# RDS Data API access
 resource "aws_iam_policy" "rds_data_api_policy" {
   name        = "${var.knowledge_base_name}-rds-data-api-policy"
   path        = "/"
@@ -95,40 +129,46 @@ resource "aws_iam_role_policy_attachment" "rds_policy_attachment" {
   role       = aws_iam_role.bedrock_kb_role.name
 }
 
+# Wait for role policy attachments to finish
 resource "time_sleep" "wait_10_seconds" {
-  depends_on = [aws_iam_role_policy_attachment.bedrock_kb_policy]
-
+  depends_on = [
+    aws_iam_role_policy_attachment.bedrock_kb_policy,
+    aws_iam_role_policy_attachment.bedrock_embedding_model_access_attachment
+  ]
   create_duration = "10s"
 }
 
 resource "aws_bedrockagent_knowledge_base" "main" {
-  name = var.knowledge_base_name
+  name     = var.knowledge_base_name
   role_arn = aws_iam_role.bedrock_kb_role.arn
+
   knowledge_base_configuration {
     vector_knowledge_base_configuration {
       embedding_model_arn = "arn:aws:bedrock:us-west-2::foundation-model/amazon.titan-embed-text-v1"
     }
     type = "VECTOR"
   }
+
   storage_configuration {
     type = "RDS"
     rds_configuration {
       credentials_secret_arn = var.aurora_secret_arn
-      database_name = var.aurora_db_name
-      resource_arn = var.aurora_arn
-      table_name = var.aurora_table_name
+      database_name          = var.aurora_db_name
+      resource_arn           = var.aurora_arn
+      table_name             = var.aurora_table_name
       field_mapping {
         primary_key_field = var.aurora_primary_key_field
-        vector_field   = var.aurora_verctor_field
-        text_field     = var.aurora_text_field
-        metadata_field = var.aurora_metadata_field
+        vector_field      = var.aurora_verctor_field
+        text_field        = var.aurora_text_field
+        metadata_field    = var.aurora_metadata_field
       }
-
     }
   }
-  depends_on = [ time_sleep.wait_10_seconds ]
+
+  depends_on = [time_sleep.wait_10_seconds]
 }
 
+# For S3-based document sync (PDF, etc.)
 data "aws_caller_identity" "current" {}
 
 locals {
@@ -144,5 +184,5 @@ resource "aws_bedrockagent_data_source" "s3_bedrock_bucket" {
       bucket_arn = var.s3_bucket_arn
     }
   }
-  depends_on = [ aws_bedrockagent_knowledge_base.main ]
+  depends_on = [aws_bedrockagent_knowledge_base.main]
 }

@@ -1,3 +1,6 @@
+# bedrock_utils.py
+
+
 import boto3
 from botocore.exceptions import ClientError
 import json

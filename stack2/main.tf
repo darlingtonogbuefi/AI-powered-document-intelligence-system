@@ -17,6 +17,6 @@ module "bedrock_kb" {
   aurora_text_field = "chunks"
   aurora_verctor_field = "embedding"
   aurora_username   = "dbadmin"
-  aurora_secret_arn = "arn:aws:secretsmanager:us-west-2:553108038487:secret:rds-db-credentials/cluster-EUBWPTXVJN3NQ7PSGCZF37VG6E/dbadmin/1758655947526-FjowjX" #TODO Update with output from stack1
+  aurora_secret_arn = "arn:aws:secretsmanager:us-west-2:553108038487:secret:my-aurora-serverless-9KdTdU" #TODO Update with output from stack1
   s3_bucket_arn = "arn:aws:s3:::bedrock-kb-553108038487" #TODO Update with output from stack1
 }

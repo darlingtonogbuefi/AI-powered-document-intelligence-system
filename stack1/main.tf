@@ -6,17 +6,17 @@ provider "aws" {
 
 # New VPC data block (Updated VPC ID)
 data "aws_vpc" "existing" {
-  id = "vpc-0978515ad9a35dfa2"
+  id = "vpc-0673f6fa8c458e07b"
 }
 
 # Updated subnet 1
 data "aws_subnet" "subnet1" {
-  id = "subnet-08b85dd21f385db67"
+  id = "subnet-039a410a46b120caa"
 }
 
 # Updated subnet 2
 data "aws_subnet" "subnet2" {
-  id = "subnet-000143b957a59b315"
+  id = "subnet-05da18ea921a80ede"
 }
 
 module "aurora_serverless" {
@@ -31,7 +31,7 @@ module "aurora_serverless" {
   master_username       = "dbadmin"
   max_capacity          = 1
   min_capacity          = 0.5
-  allowed_cidr_blocks   = ["172.31.0.0/16", "0.0.0.0/0"]  # CIDR matches new VPC
+  allowed_cidr_blocks   = ["172.31.0.0/16", "0.0.0.0/0"]  # "0.0.0.0/0" added to enable public access
 }
 
 data "aws_caller_identity" "current" {}
