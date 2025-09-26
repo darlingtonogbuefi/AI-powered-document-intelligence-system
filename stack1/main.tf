@@ -1,22 +1,22 @@
 #   stack1\main.tf
 
 provider "aws" {
-  region = "us-west-2"  # Updated to match actual region (us-west-2)
+  region = "us-west-2"  #Updated to match actual region (us-west-2)
 }
 
 # New VPC data block (Updated VPC ID)
 data "aws_vpc" "existing" {
-  id = "vpc-0673f6fa8c458e07b"
+  id = "vpc-02e40d437d3fc3123"
 }
 
 # Updated subnet 1
 data "aws_subnet" "subnet1" {
-  id = "subnet-039a410a46b120caa"
+  id = "subnet-044f5f6e1d432232d"
 }
 
 # Updated subnet 2
 data "aws_subnet" "subnet2" {
-  id = "subnet-05da18ea921a80ede"
+  id = "subnet-04ed82c5ceefdcb2e"
 }
 
 module "aurora_serverless" {
