@@ -1,4 +1,4 @@
-## /test_chatbot.py
+# /test_chatbot.py
 
 from bedrock_utils import query_knowledge_base, generate_response, valid_prompt
 
