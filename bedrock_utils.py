@@ -1,4 +1,4 @@
-# /bedrock_utils.py
+# \bedrock_utils.py
 
 
 import boto3
