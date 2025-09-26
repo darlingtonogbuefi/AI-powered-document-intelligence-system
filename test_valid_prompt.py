@@ -1,4 +1,4 @@
-## /test_valid_prompt.py
+# /test_valid_prompt.py
 
 from bedrock_utils import valid_prompt
 
