@@ -1,4 +1,4 @@
-#   stack1\main.tf
+# stack1\main.tf
 
 provider "aws" {
   region = "us-west-2"  #Updated to match actual region (us-west-2)
