@@ -37,3 +37,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 __pycache__/**
+
+
+# Ignore AWS login credentials
+set-aws-creds.bat
