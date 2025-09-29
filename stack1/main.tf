@@ -1,7 +1,7 @@
 # stack1\main.tf
 
 provider "aws" {
-  region = "us-west-2"  #Updated to match actual region (us-west-2)
+  region = "us-west-2"  # Updated to match actual region (us-west-2)
 }
 
 # New VPC data block (Updated VPC ID)

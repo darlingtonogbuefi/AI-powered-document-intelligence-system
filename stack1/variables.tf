@@ -1,4 +1,4 @@
-#   stack1\variables.tf
+# stack1\variables.tf
 # Variables for stack1
 
 variable "vpc_id" {

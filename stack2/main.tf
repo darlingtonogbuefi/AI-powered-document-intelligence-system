@@ -1,3 +1,5 @@
+# stack2\main.tf
+
 provider "aws" {
   region = var.aws_region
 }

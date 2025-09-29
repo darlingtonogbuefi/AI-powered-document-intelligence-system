@@ -1,3 +1,5 @@
+# stack1\outputs.tf
+
 output "db_endpoint" {
   value = module.aurora_serverless.cluster_endpoint
 }
