@@ -1,4 +1,4 @@
-## /scripts\upload_s3.py
+#  /scripts\upload_s3.py
 
 import os
 import sys
