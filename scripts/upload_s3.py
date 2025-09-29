@@ -34,7 +34,7 @@ if __name__ == "__main__":
     folder_path = "scripts/spec-sheets"
     
     # S3 bucket name
-    bucket_name = "bedrock-kb-553108038487"  # Replace with your actual bucket name bedrock-kb-553108038487
+    bucket_name = "bedrock-kb-XXXXXXXXXX"  # Replace with your actual bucket name bedrock-kb-553108038487
     
     # S3 prefix (optional)
     prefix = "spec-sheets" 

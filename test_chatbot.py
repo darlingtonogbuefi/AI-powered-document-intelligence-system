@@ -5,7 +5,7 @@ from bedrock_utils import query_knowledge_base, generate_response, valid_prompt
 # Test data
 test_prompt = "What safety features are built into the FL250 forklift according to its spec sheet?"
 test_model_id = "anthropic.claude-3-5-haiku-20241022-v1:0"  # or your chosen model
-test_kb_id = "TQGXX29JEI"
+test_kb_id = "TXXXXXXI"
 
 # Test valid_prompt
 is_valid = valid_prompt(test_prompt, test_model_id)
