@@ -1,6 +1,6 @@
 REM This is an example of how to set AWS credentials using setx in a Windows batch file.
 REM Replace the placeholder values with your actual AWS credentials.
-REM run in terminal as: ./set-aws-creds.bat
+REM run in terminal as: ./set-aws-creds-example.bat
 
 
 @echo off

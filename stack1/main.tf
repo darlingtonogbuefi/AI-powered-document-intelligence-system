@@ -5,6 +5,7 @@ provider "aws" {
 }
 
 # New VPC data block (Updated VPC ID)
+
 data "aws_vpc" "existing" {
   id = var.vpc_id
 }

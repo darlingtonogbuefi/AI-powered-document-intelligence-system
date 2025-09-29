@@ -1,4 +1,5 @@
 #   stack1\variables.tf
+# Variables for stack1
 
 variable "vpc_id" {
   description = "The ID of the existing VPC"
