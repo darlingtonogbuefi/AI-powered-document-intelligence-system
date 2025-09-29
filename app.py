@@ -51,9 +51,21 @@ if prompt := st.chat_input("What would you like to know?"):
         # Prepare context from Knowledge Base results
         context = "\n".join([result['content']['text'] for result in kb_results])
 
+        # Extract source references from the 'location.s3Location.uri' path
+        sources = set()
+        for result in kb_results:
+            source = result.get('location', {}).get('s3Location', {}).get('uri')
+            if source:
+                sources.add(source)
+
         # Generate response using LLM
         full_prompt = f"Context: {context}\n\nUser: {prompt}\n\n"
         response = generate_response(full_prompt, model_id, temperature, top_p)
+
+        # Append sources to response if any found
+        if sources:
+            source_text = "\n\n---\n**Sources:**\n" + "\n".join(f"- {src}" for src in sources)
+            response += source_text
     else:
         response = "I'm unable to answer this, please try again"
 
