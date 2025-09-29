@@ -121,7 +121,7 @@ project-root/
 
 12. Upload pdf files to S3, place your files in the `spec-sheets` folder and run:
       ```
-      python scripts/upload_to_s3.py
+      python scripts/upload_s3.py
       ```
       - Make sure to update the S3 bucket name in the script before running.
 
@@ -131,14 +131,14 @@ project-root/
 
 ### S3 Upload Script
 
-The `upload_to_s3.py` script does the following:
+The `upload_s3.py` script does the following:
 - Uploads all files from the `spec-sheets` folder to a specified S3 bucket
 - Maintains the folder structure in S3
 
 To use it:
 1. Update the `bucket_name` variable in the script with your S3 bucket name.
 2. Optionally, update the `prefix` variable if you want to upload to a specific path in the bucket.
-3. Run `python scripts/upload_to_s3.py`.
+3. Run `python scripts/upload_s3.py`.
 
 ## Complete chat app
 
