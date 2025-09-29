@@ -1,4 +1,4 @@
--- scripts/aurora_sql.sql
+--   scripts/aurora_sql.sql
 
 CREATE EXTENSION IF NOT EXISTS vector;
 
