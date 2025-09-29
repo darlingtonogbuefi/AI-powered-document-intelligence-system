@@ -1,18 +1,25 @@
 ## \test_chatbot.py
 
+import os
+from dotenv import load_dotenv
 from bedrock_utils import query_knowledge_base, generate_response, valid_prompt
+
+# Load environment variables
+load_dotenv()
 
 # Test data
 test_prompt = "What safety features are built into the FL250 forklift according to its spec sheet?"
-test_model_id = "anthropic.claude-3-5-haiku-20241022-v1:0"  # or your chosen model
-test_kb_id = "TXXXXXXI"
+test_model_id = os.getenv("MODEL_ID_35")  # from .env
+kb_id = os.getenv("KB_ID")            # from .env
+
+print(f"Testing with model_id={test_model_id} and kb_id={kb_id}")
 
 # Test valid_prompt
 is_valid = valid_prompt(test_prompt, test_model_id)
 print("valid_prompt output:", is_valid)
 
 # Test query_knowledge_base
-kb_results = query_knowledge_base(test_prompt, test_kb_id)
+kb_results = query_knowledge_base(test_prompt, kb_id)
 print("query_knowledge_base output:", kb_results)
 
 # Test generate_response

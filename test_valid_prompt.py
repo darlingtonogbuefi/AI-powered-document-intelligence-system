@@ -1,9 +1,14 @@
 # \test_valid_prompt.py
 
+import os
+from dotenv import load_dotenv
 from bedrock_utils import valid_prompt
 
-# Replace with your actual model ID
-model_id = "anthropic.claude-3-5-haiku-20241022-v1:0"
+# Load environment variables
+load_dotenv()
+
+# Get model ID from .env
+model_id = os.getenv("MODEL_ID_35")  # or MODEL_ID_37 depending on what you want to test
 
 # Sample user prompt to test
 user_input = "How does this AI model work internally?"
