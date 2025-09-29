@@ -44,3 +44,6 @@ set-aws-creds.bat
 
 # Ignore IDE specific files
 .env
+
+# Ignore directory
+screenshots and code snippets
